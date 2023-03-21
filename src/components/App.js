@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { apiUrlMarvelCharacters } from '../utils/marvel-url-utils';
+import { apiUrlMarvelCharacters, apiUrlMarvelSearchCharacterName } from '../utils/marvel-url-utils';
 import './App.css';
 import PageHeros from './PageHeros';
 import PageHeroSingle from './PageHeroSingle';
+import SearchBar from './SearchBar';
 
 /*
 https://developer.marvel.com/account
@@ -21,11 +22,8 @@ function App() {
   const navigate = useNavigate();
   const [heros, setHeros] = useState([])
 
-  const handleClickLogo = (e) => {
-    navigate("/");
-  }
 
-  useEffect(() => {
+  const refresh = () => {
     console.log('we will fetch characters');
     axios.get(apiUrlMarvelCharacters())
       .then((response) => {
@@ -35,11 +33,34 @@ function App() {
         }
       })
 
+  }
+
+  const handleClickLogo = (e) => {
+    navigate("/");
+    refresh()
+  }
+
+  
+  useEffect(() => {
+    refresh()
   }, [])
+
+  const fetchSearch = (name) => {
+    console.log('we will fetch search', name);
+    axios.get(apiUrlMarvelSearchCharacterName(name))
+      .then((response) => {
+        console.log('response', response);
+        if (response && response.data && response.data.data && Array.isArray(response.data.data.results)) {
+          setHeros(response.data.data.results)
+        }
+      })
+
+  }
 
   return (
     <div className="App">
-      <div onClick={handleClickLogo}>LOGO</div>
+      <div className='logo' onClick={handleClickLogo}>Marvel app</div>
+      <SearchBar fetchSearch={fetchSearch} />
       <Routes>
         <Route
           path="/"
