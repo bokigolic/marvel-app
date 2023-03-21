@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
-const PageHeroSingle = () => {
+const PageHeroSingle = (props) => {
+  const { id } = useParams();
+
+  useEffect(() => {
+    
+  }, [id])
+
   return (
-    <div>PageHeroSingle</div>
+    <>
+      <div>PageHeroSingle</div>
+      <p>ID: {id}</p>
+    </>
   )
 }
 
