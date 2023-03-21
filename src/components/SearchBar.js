@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const SearchBar = (props) => {
+  const navigate = useNavigate()
   const [search, setSearch] = useState("")
 
   const handleClickSearch = () => {
     if (search.trim() !== "") {
       console.log("We will search", search.trim())
       // 
-      props.fetchSearch(search.trim())
+      props.fetchSearch(search.trim());
+      // takodje i da redirectuej na pocetnu
+      navigate("/")
     }
   }
 
