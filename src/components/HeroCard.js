@@ -14,7 +14,7 @@ function HeroCard(props) {
   }
 
   return (
-    <div onClick={handleClickHero}>{hero.name}</div>
+    <div className='hero-card' onClick={handleClickHero}>{hero.name}</div>
   )
 }
 

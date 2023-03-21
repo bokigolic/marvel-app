@@ -1,0 +1,19 @@
+.logo{
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.heros-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+
+  .hero-card{
+    border: 1px solid black;
+    margin: 5px;
+    min-width: 140px;
+    max-width: 140px;
+    height: 140px;
+  }
+}

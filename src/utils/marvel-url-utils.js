@@ -10,3 +10,7 @@ const ENDPOINT_CHARACTERS = 'https://gateway.marvel.com/v1/public/characters?';
 export const apiUrlMarvelCharacters = () => {
   return ENDPOINT_CHARACTERS + my_url_sufix;
 };
+
+export const apiUrlMarvelSearchCharacterName = (name) => {
+  return ENDPOINT_CHARACTERS + my_url_sufix + '&name=' + name;
+};
